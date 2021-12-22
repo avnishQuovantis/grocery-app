@@ -1,0 +1,172 @@
+@import "variables.scss";
+@import "mixin.scss";
+.groceryList {
+    margin-top: 1rem;
+    text-align: center;
+    padding: 0.6rem;
+    // box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    //     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    margin-bottom: $big-margin-bottom;
+    height: fit-content;
+    border-radius: 1rem;
+    background-color: white;
+    &__heading {
+        font-family: "Lobster Two", cursive;
+        font-size: $large-heading-size;
+        letter-spacing: 0.4rem;
+        margin-bottom: 2rem;
+        @include respond(phone) {
+            font-size: $default-size;
+        }
+    }
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-left: 0.2rem;
+        padding-top: 0.2rem;
+        text-align: center;
+        background: whitesmoke;
+
+        .catagoryRows {
+            padding: 0.3rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 24%;
+            border-radius: 4px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+            background-color: white;
+            margin: 4vh;
+            transition: transform 0.4s ease-in-out;
+            // @include respond(phone) {
+            //     width: 40%;
+            //     padding: 0.2rem;
+            // }
+            @include respond(phone) {
+                width: 40%;
+                padding: 0.2rem;
+                margin: 0.5rem;
+            }
+            &__title {
+                // font-family: "Great Vibes", sans-serif;
+                font-family: "Poppins", sans-serif;
+                font-size: $medium-size;
+                font-weight: 200;
+                margin: 2px 0;
+                @include respond(phone) {
+                    font-size: $small-size;
+                }
+            }
+            &__price {
+                font-size: $default-size;
+                &-mrp {
+                    text-decoration: line-through;
+                    color: gray;
+                }
+                @include respond(phone) {
+                    font-size: $extra-small-size;
+                }
+            }
+            &__rating {
+                display: flex;
+                font-size: $small-size;
+                .on {
+                    color: yellow;
+                }
+            }
+            &__rating * {
+                font-size: $default-size !important;
+                @include respond(phone) {
+                    font-size: $extra-small-size !important;
+                }
+            }
+
+            &:hover {
+                // transform: scale(1.03);
+                opacity: 0.9;
+                // box-shadow: 0 0 5px #ffee10;
+            }
+
+            &__titleBtn {
+                padding: 0;
+                width: 100%;
+                backface-visibility: hidden;
+                position: relative;
+
+                & img {
+                    width: 100%;
+                    height: 17vw;
+                    border-top-left-radius: 4px;
+                    border-top-right-radius: 4px;
+                }
+
+                &:hover .titleBtn-addCart {
+                    opacity: 1;
+                    // transform: translateY(-1rem);
+                    height: 100%;
+                    z-index: 9;
+                }
+                .titleBtn-addCart {
+                    display: flex;
+                    // bottom: -1rem;
+                    bottom: 0;
+                    left: 0;
+                    padding: 0.8rem 0;
+                    opacity: 0;
+                    height: 0;
+                    position: absolute;
+                    z-index: 0;
+                    backface-visibility: hidden;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    background-color: rgba($color-black, 0.14);
+                    // background-image: linear-gradient(to top, rgba($color-black, 0.2), transparent);
+                    transition: all 0.2s ease-in;
+                    color: white;
+                    &-btn {
+                        padding: 1rem;
+                        border-radius: 100%;
+                        @include respond(phone) {
+                            padding: 0.3rem 0.5rem;
+                        }
+                        svg {
+                            margin-right: 0;
+                            width: $large-size;
+                            height: $large-size;
+                            @include respond(phone) {
+                                width: $small-size;
+                                height: $small-size;
+                            }
+                        }
+                        &-qty {
+                            font-size: $small-size;
+                            display: block;
+                            margin: -0.5rem 0;
+                            @include respond(phone) {
+                                font-size: $double-extra-small-size;
+                                margin-top: -0.2rem;
+                                margin-bottom: -0.5rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &__list::-webkit-scrollbar {
+        height: 7px;
+        width: 7px;
+    }
+    &__list::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+    }
+    &__list::-webkit-scrollbar-thumb {
+        background: rgb(184, 184, 184);
+        border-radius: 10px;
+    }
+}

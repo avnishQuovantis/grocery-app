@@ -1,0 +1,303 @@
+@import "variables.scss";
+@import "mixin.scss";
+@import "animation.scss";
+.mainContainer {
+    width: 100%;
+    background-size: 100%;
+    height: 100%;
+    background-color: $color-white;
+    position: relative;
+    top: 0;
+    padding: 13vh 1rem 1rem 1rem;
+    .offers {
+        padding: 1rem;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        background-color: whitesmoke;
+        margin-bottom: $big-margin-bottom;
+        @include respond(phone) {
+            margin-bottom: $medium-margin-bottom;
+        }
+        &__btn {
+            @include respond(phone) {
+                background-size: cover;
+            }
+            width: 43vw;
+            height: 27vw;
+            margin: 5px;
+            background-color: black;
+            background-size: 100%;
+            transition: all 0.3s;
+            position: relative;
+            &-button {
+                padding: 0.4rem 1.8rem;
+                border-radius: 2rem;
+                background-color: green;
+                color: white;
+                border: none;
+                outline: none;
+                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+                transition: all 0.3s;
+                &:hover {
+                    background-color: lighten(green, 2%);
+                }
+                &:active {
+                    background-color: darkgreen;
+                }
+                @include respond(phone) {
+                    padding: 0.1rem 0.2rem;
+                    font-size: 0.3rem;
+                    margin-top: -0.4rem;
+                }
+            }
+            &-text {
+                position: absolute;
+
+                // text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
+                text-shadow: 3px 2px 4px #0000005e;
+                color: whitesmoke;
+
+                &-small {
+                    font-size: 1.5rem;
+                    // animation: moveInLeft 1s;
+                    display: block;
+                    @media (prefers-reduced-motion: no-preference) {
+                        & {
+                            animation: moveInLeft 1s;
+                        }
+                    }
+                    @include respond(tab-port) {
+                        font-size: $small-size;
+                    }
+                    @include respond(phone) {
+                        font-size: $extra-small-size;
+                    }
+                }
+                &-big {
+                    // animation: moveInRight 1s;
+                    @media (prefers-reduced-motion: no-preference) {
+                        & {
+                            animation: moveInRight 1s;
+                        }
+                    }
+                    @include respond(tab-port) {
+                        font-size: $small-size;
+                    }
+                    @include respond(phone) {
+                        font-size: $extra-small-size;
+                        margin-bottom: -0.4rem;
+                    }
+                    display: block;
+                    font-size: 2rem;
+                    font-weight: 500;
+                    margin-bottom: 0.8rem;
+                }
+                &-highlight {
+                    color: red;
+                }
+            }
+            &-1 {
+                background-image: linear-gradient(to right, rgba(black, 0.2), rgba(black, 0.3)),
+                    url("https://www.thespruceeats.com/thmb/ZnWDXm0VjfY2wy25ocFqZccy5YY=/2164x1217/smart/filters:no_upscale()/freshvegetablesAlexRaths-4c1ea186a88e4fd7b95283eee614600c.jpg");
+                &-text {
+                    top: 35%;
+                    left: 1rem;
+                }
+            }
+            &-2 {
+                background-image: linear-gradient(to right, rgba(black, 0.2), rgba(black, 0.3)),
+                    url("https://www.naturesproduce.com/wp-content/uploads/2018/09/Backgroud-img.jpg");
+
+                &-text {
+                    left: 40%;
+                    top: 30%;
+                }
+            }
+            &-3 {
+                background-image: linear-gradient(to right, rgba(black, 0.2), rgba(black, 0.3)),
+                    // url("https://p4.wallpaperbetter.com/wallpaper/218/532/855/milk-wallpaper-preview.jpg");
+                    url("https://media.istockphoto.com/photos/collection-of-dairy-products-on-blue-background-top-view-picture-id1280703484?b=1&k=20&m=1280703484&s=170667a&w=0&h=F-6_f_BwFZqEYGzETL_0rGt05HIkYEg9TBVrfSbn7O8=");
+                &-text {
+                    left: 1rem;
+                    top: 35%;
+                    .highlight-3 {
+                        color: blue;
+                    }
+                }
+            }
+            &-4 {
+                background-image: linear-gradient(to right, rgba(black, 0.2), rgba(black, 0.3)),
+                    url("https://thumbs.dreamstime.com/b/food-bread-bakery-goods-wooden-background-high-resolution-food-bread-bakery-wooden-background-119166802.jpg");
+                &-text {
+                    top: 34%;
+                    right: 24%;
+                    .highlight-4 {
+                        color: brown;
+                    }
+                }
+            }
+            &:hover {
+                opacity: 0.94;
+            }
+        }
+    }
+    .banner {
+        height: 40vw;
+        position: relative;
+        width: 100%;
+        top: 0;
+        margin-bottom: $big-margin-bottom;
+        background-size: cover;
+        background-image: url("https://health.clevelandclinic.org/wp-content/uploads/sites/3/2019/06/cropped-GettyImages-643764514.jpg");
+        @include respond(phone) {
+            margin-bottom: $medium-margin-bottom;
+        }
+        &__text {
+            color: whitesmoke;
+            position: absolute;
+            top: 30%;
+            right: 10%;
+            &-heading {
+                font-size: $large-heading-size;
+                animation: moveInRight 1s;
+                @include respond(phone) {
+                    font-size: $small-size;
+                }
+            }
+            &-quote {
+                font-size: $default-size;
+                animation: moveInLeft 1s;
+                @include respond(phone) {
+                    font-size: $double-extra-small-size;
+                }
+            }
+            @include respond(phone) {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+.item {
+    margin-right: 10px;
+    padding: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 95%;
+}
+.item img {
+    width: 138px;
+    height: 125px;
+}
+.item span {
+    font-size: 0.9rem !important;
+}
+.price {
+    width: 100% !important;
+}
+.quantity {
+    display: flex;
+    height: 2rem;
+    width: 95%;
+}
+.quantity input {
+    width: 3rem;
+    font-size: 1rem;
+}
+.addBasket {
+    border-radius: 100%;
+    font-size: 1rem !important;
+    padding: 0px 5px !important;
+}
+
+.catagoryItem {
+    width: 18vw;
+    height: 220px;
+    display: flex;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.4s ease-in-out;
+    padding: 0.4rem;
+    border-radius: 0.7rem;
+    background-color: $color-catagory-item;
+}
+.catagoryItem:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+
+    box-shadow: 0 0 5px #ffee10;
+}
+
+.catagoryItem img {
+    width: 100%;
+    height: 80%;
+    border-top-left-radius: 0.7rem;
+    border-top-right-radius: 0.7rem;
+}
+.catagoryItem h5 {
+    margin: auto;
+    color: $color-white;
+    /* text-decoration: none; */
+}
+a {
+    text-decoration: none;
+}
+.addRemove {
+    display: flex;
+    width: 50%;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+.catagory > button {
+    padding: 0;
+    margin: 0;
+}
+
+/*  */
+@media screen and (min-width: 440px) and (max-width: 600px) {
+    .catagoryItem {
+        width: 127px;
+        height: 113px;
+    }
+    .catagoryItem img {
+        width: 100%;
+        height: 81%;
+    }
+    .catagoryItem h5 {
+        margin: auto;
+        color: black;
+        font-size: 0.8rem;
+        /* text-decoration: none; */
+    }
+}
+@media screen and (max-width: 265px) {
+    .catagoryItem {
+        height: 70px;
+    }
+    .catagoryItem img {
+        width: 85%;
+        height: 70%;
+    }
+    .catagoryItem h5 {
+        font-size: 0.7rem;
+    }
+}
+@media screen and (min-width: 266px) and (max-width: 437px) {
+    .catagoryItem {
+        width: 83px !important;
+        height: 80px;
+    }
+    .catagoryItem h5 {
+        font-size: 0.7rem;
+    }
+    .catagoryItem img {
+        width: 85%;
+        height: 100px;
+    }
+}

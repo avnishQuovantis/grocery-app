@@ -1,0 +1,151 @@
+@import "mixin.scss";
+
+.catagoryContainer {
+    position: relative;
+    top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    margin-top: 7%;
+}
+.catagoryItems {
+    /* width: 260px; */
+    @include flexCenterColumn;
+    position: relative;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 0.4rem;
+    background: whitesmoke;
+    margin: auto;
+    border: 2px solid lightgray;
+    margin-top: 0.7rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 1rem;
+    transition: transform 0.4s ease-in-out;
+}
+.catagoryItems img {
+    width: 210px;
+    height: 130px;
+    margin-bottom: 7px;
+}
+.catagoryItems a {
+    text-align: center;
+}
+.catagoryItems h5 {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+.price {
+    height: 76px;
+    /* background-color: lightgray; */
+    width: 70%;
+    padding: 0.4rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.price button {
+    margin-top: 5px;
+    /* margin: auto; */
+}
+
+.quantity > span {
+    margin: auto;
+}
+.catagoryItems h6 {
+    font-size: 1rem;
+}
+.catagoryItems * {
+    font-size: 0.9rem;
+}
+.leftCatagory {
+    position: fixed;
+    width: 35vw;
+    padding: 0.1rem;
+    border-radius: 2rem;
+    border: 2px solid gainsboro;
+    z-index: 10;
+    background: #f3f3f3;
+    top: 13vh;
+    left: 32vw;
+    @include flexSpaceEvenly;
+}
+.leftCatagory > * {
+    display: flex;
+    width: fit-content;
+    padding: 0.3rem;
+    width: 120px;
+    justify-content: space-between;
+}
+.leftCatagory > div button {
+    border-radius: 100%;
+    padding: 0.1rem 0.3rem;
+}
+.leftCatagory > button {
+    width: fit-content;
+    z-index: 100;
+}
+.leftCatagory button svg {
+    z-index: -1;
+    margin-right: 0;
+}
+.ratingItems {
+    @include flexCenter;
+}
+.addRemove * {
+    font-size: 0.9rem;
+}
+.catagoryItems > div {
+    margin-bottom: 2px;
+}
+.titleItemDetailBtn {
+    padding: 0;
+}
+.catagoryItems:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+
+    box-shadow: 0 0 5px #ffee10;
+}
+
+/* .addRemove */
+
+@media screen and (max-width: 250px) {
+    .itemDetails > img {
+        height: 30vh;
+        margin-bottom: 10px;
+    }
+    .itemDetails * {
+        font-size: 0.7rem;
+    }
+}
+@media screen and (min-width: 250px) and (max-width: 600px) {
+    .catagoryItems {
+        padding: 0.3rem;
+        margin-top: 0.7rem;
+    }
+    .catagoryItems * {
+        font-size: 0.7rem;
+    }
+    .catagoryItems img {
+        width: 100%;
+        height: 94px;
+    }
+    .titleItemDetailBtn {
+        width: 162px;
+        padding: 0;
+    }
+    .catagoryItems h5 {
+        font-size: 0.8rem;
+    }
+    .addCart {
+        padding: 0rem 0.3rem !important;
+        font-size: 0.6rem !important
+    ;
+    }
+    .leftCatagory {
+        width: 80vw;
+        left: 10vw;
+    }
+}

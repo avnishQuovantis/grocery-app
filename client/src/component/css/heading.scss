@@ -1,0 +1,250 @@
+@import "variables.scss";
+@import "mixin.scss";
+
+* {
+    box-sizing: border-box;
+}
+.headContainer {
+    width: 100%;
+    height: 13%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $color-black;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 9px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    .searchInput {
+        width: 45%;
+        @include respond(phone) {
+            & > * {
+                height: 1.5rem;
+                font-size: 0.5rem;
+            }
+            & > button {
+                width: 1rem;
+
+                padding: 0;
+            }
+            & svg {
+                height: 7px;
+                width: 7px;
+            }
+        }
+    }
+    .logo {
+        width: 25%;
+        text-align: center;
+        transition: all 0.5s;
+        // &:hover {
+        //     background-color: lighten(black, 15%);
+        // }
+        &:hover button {
+            color: white;
+        }
+        button {
+            transition: all 0.5s;
+            font-family: "Great Vibes";
+            // color: yellowgreen;
+            color: transparent;
+            background-color: #08e1ae;
+            background-image: linear-gradient(315deg, #08e1ae 0%, #98de5b 74%);
+            background-clip: text;
+            font-size: $medium-heading-size;
+            font-weight: 700;
+
+            @include respond(tab-port) {
+                & {
+                    font-size: 1.5rem;
+                }
+            }
+            @include respond(phone) {
+                font-size: 0.7rem;
+                padding: 0.1rem;
+            }
+        }
+    }
+    .menuBar {
+        display: flex;
+        justify-content: space-evenly;
+        width: 35%;
+        align-items: center;
+        .dropBtnContainer {
+            position: relative;
+            .dropBtn {
+                font-weight: bolder;
+                height: fit-content;
+                color: whitesmoke;
+                border: 1px solid white;
+                transition: all 0.6s;
+                @include respond(phone) {
+                    & {
+                        font-size: $extra-small-size;
+                        padding: 0.2rem 0.2rem;
+                    }
+                }
+                &:hover {
+                    color: black;
+                    // border: 1px solid lightgreen;
+                    background-color: white;
+                }
+                /* border:2px solid white */
+            }
+        }
+        // .basketIcon {
+        //     @include respond(phone) {
+        //         & {
+        //             padding: 0.4rem;
+        //         }
+        //     }
+        .basket {
+            position: relative;
+            border: 1px solid white;
+            padding: 0.6rem;
+            transition: all 0.6s;
+            color: $color-white;
+            &:hover {
+                color: black;
+                background-color: white;
+            }
+            @include respond(tab-port) {
+            }
+            @include respond(phone) {
+                & {
+                    padding: 0.4rem;
+                }
+            }
+            #basketIcon {
+                width: $medium-size;
+                height: $medium-size;
+                // color: $color-white;
+
+                @include respond(tab-port) {
+                    & {
+                        width: $default-size;
+                        height: $default-size;
+                    }
+                }
+                @include respond(phone) {
+                    & {
+                        width: 0.8rem;
+                        height: 0.8rem;
+                        margin: auto;
+                    }
+                }
+            }
+            .Qty {
+                position: absolute;
+                top: -2px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: $small-size;
+                // color: $color-white;
+
+                @include respond(tab-port) {
+                    top: 0px;
+                    left: 1rem;
+                    font-size: 0.7rem;
+                }
+                @include respond(phone) {
+                    & {
+                        position: absolute;
+                        top: -2px;
+                        left: 40%;
+                        font-size: 0.6rem;
+                        color: whitesmoke;
+                    }
+                }
+            }
+            // }
+        }
+    }
+}
+.modalBtn {
+    border: 1px solid;
+    padding: 0.2rem 0.5rem;
+    font-size: 1rem;
+    &__login {
+        &:hover {
+            background-color: black;
+            color: white;
+        }
+    }
+    &__signup {
+        &:hover {
+            background-color: red;
+            color: white;
+        }
+    }
+    &__signout {
+        &:hover {
+            background-color: red;
+            color: white;
+        }
+    }
+}
+
+.dropmenu {
+    position: absolute;
+    top: 1.9rem;
+    left: -2rem;
+    // width: 120px;
+
+    background-color: white;
+    display: flex;
+
+    border: 1px solid whitesmoke;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 120px;
+    height: 120px;
+    box-shadow: 1px 1px 7px -2px;
+    transition: all 0.3s ease-in-out;
+}
+.openModal {
+    opacity: 1;
+
+    z-index: 11;
+
+    transform: translateY(0) scale(1);
+    // animation: openModal 0.4s ease-out forwards;
+}
+.closeModal {
+    // animation: closeModal 0.4s ease-out forwards;
+    transform: translateY(-90%) scale(0);
+    opacity: 0;
+
+    z-index: 0;
+    // transform:scale(0);
+}
+@keyframes openModal {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(90%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes closeModal {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(60%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
