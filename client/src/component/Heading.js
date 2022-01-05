@@ -5,23 +5,24 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Home from "./Home";
 export default function Heading() {
-  let state = useSelector((state) => state.home);
+  let auth = useSelector((state) => state.auth);
+  let cart = useSelector(state => state.cart)
   let dispatch = useDispatch();
-  // let { name } = useParams();
+
   const history = useHistory();
   const [search, setSearch] = useState("");
-  console.log(state);
   const searchButton = () => {
     history.push(`/search/${search}`);
+    setSearch("")
   };
   const [open, setOpen] = useState(false);
-  let user = state.currUser;
+  let user = auth.currUser;
   const searchItem = (e) => {
-    setSearch(e.target.value);
-    // dispatch({type:"search",payload:e.target.value})
     if (e.target.value == "") {
       history.push("/");
     }
+    setSearch(e.target.value);
+    // dispatch({type:"search",payload:e.target.value})
   };
   const headingBtn = (val) => {
     history.push(val);
@@ -43,7 +44,7 @@ export default function Heading() {
           placeholder="Search"
           value={search}
           aria-describedby="button-addon2"
-          onChange={(e) => searchItem(e)}
+          onChange={searchItem}
           onKeyDown={(e) => {
             if (e.key == "Enter") {
               searchButton(e);
@@ -78,7 +79,7 @@ export default function Heading() {
           class="btn basket "
           onClick={() => headingBtn("/cart")}
         >
-          <span className="Qty">{state.qty}</span>
+          <span className="Qty">{cart.qty}</span>
 
           <svg
             id="basketIcon"
@@ -126,7 +127,7 @@ export default function Heading() {
               ) : (
                 <>
                   <button className="btn btn-secondary"
-                    onClick={history.push({
+                    onClick={() => history.push({
                       pathname: `/user/${user.firstName}`,
                       user: user
                     })}>{user.firstName}</button>

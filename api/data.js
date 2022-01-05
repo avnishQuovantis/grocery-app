@@ -59,7 +59,7 @@ const data = [
     "title": "Pesto with basil",
     "type": "vegetable",
     "description": "Italian traditional pesto with basil, chesse and oil",
-    "filename": "6.jpg",
+    "filename": "6",
     qty: 0,
     "price": 18.19,
     "rating": 2

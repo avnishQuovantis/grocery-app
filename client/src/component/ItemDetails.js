@@ -1,29 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router";
+import Grocery from "../groceries/Grocery"
 import "./css/itemDetails.scss";
+import axios from "axios";
+import useBasket from "./useBasket";
 export default function ItemDetails() {
   //   const location = useLocation();
   //   const { data } = location.state;
   const selector = useSelector((state) => state.home);
   const dispatch = useDispatch();
   const param = useParams();
-  const data = selector.data.find((obj) => {
-    return obj.title == param.name;
-  });
+  const [data, setData] = useState({})
+  console.log(param);
+  const [addBasket, removeBasket] = useBasket()
+  useEffect(async () => {
+    let urlName = "http://localhost:9000/item/" + param.name
+    let val = await axios.get(urlName)
+    let newVal = val.data.item
+    let newData = { ...newVal, filename: Grocery[newVal.filename] }
+    setData(newData)
+  }, [])
   console.log(data);
-  const addBasket = (obj) => {
-    dispatch({
-      type: "addInBasket",
-      payload: obj,
-    });
-  };
-  const removeBasket = (obj) => {
-    dispatch({
-      type: "removeFromBasket",
-      payload: obj,
-    });
-  };
+
   return (
     <div className="itemContainer">
       <div className="itemDetails">
@@ -34,9 +33,9 @@ export default function ItemDetails() {
           <span> {data.price}</span>
         </div>
         <div className="itemsRating">
-                <h5>Rating:</h5>
-                {data.rating} <span class="material-icons">star</span>
-              </div>
+          <h5>Rating:</h5>
+          {data.rating} <span class="material-icons">star</span>
+        </div>
 
         <div className="addRemoveItem">
           <button
@@ -45,7 +44,7 @@ export default function ItemDetails() {
           >
             -
           </button>
-          <h5>{data.qty}</h5>
+          {/* <h5>{data.qty}</h5> */}
           <button
             onClick={() => addBasket(data)}
             className="btn btn-primary  add"

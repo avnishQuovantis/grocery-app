@@ -5,7 +5,7 @@ import { Redirect, useHistory } from "react-router";
 import "./css/loginSignup.scss";
 // import axios from "axios"
 export default function Signup() {
-  const selector = useSelector((state) => state.home);
+  const selector = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
   const [state, setState] = useState({
@@ -32,7 +32,7 @@ export default function Signup() {
       history.push("/signup")
     } else {
       alert("Successfully signup")
-      dispatch({ type: "signup", payload: user });
+      dispatch({ type: "signup", payload: obj.data });
       history.push("/login");
     }
     setState({ firstName: "", lastName: "", email: "", password: "", address: "" });

@@ -53,6 +53,8 @@ import fortyNine from "./image/49.jpg"
 import fifty from "./image/50.jpg"
 
 
+
+
 const data = [
   {
     id: 0,

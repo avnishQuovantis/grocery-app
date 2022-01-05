@@ -12,14 +12,15 @@ import axios from "axios"
 export default function Home({ addBasket, removeBasket }) {
   let state = useSelector((state) => state.home);
   let dispatch = useDispatch();
-  let [file, setFile] = useState([])
+
   console.log(state.currUser);
   const history = useHistory()
   useEffect(async () => {
     let val = await axios.get("http://localhost:9000")
     let data = val.data.data
-    setFile(data)
+    dispatch({ type: "initialHomeData", payload: data })
   }, [])
+
   const allGroceries = [...state.data];
 
   return (

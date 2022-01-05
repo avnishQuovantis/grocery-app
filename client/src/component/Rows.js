@@ -20,10 +20,10 @@ export default function Rows({ data }) {
       {data.map((obj) => {
         return (
 
-          <div data-testid="rowsData" className="catagoryRows" onClick={() => history.push({ pathname: `/item/${obj.title}`, state: { data: obj } })}>
-            <div className="catagoryRows__titleBtn" onClick={handleChild}>
+          <div data-testid="rowsData" className="catagoryRows" onClick={() => history.push({ pathname: `/item/${obj.id}`, state: { data: obj } })}>
+            <div className="catagoryRows__titleBtn" >
               <img src={obj.filename} />
-              <div className="titleBtn-addCart" >
+              <div className="titleBtn-addCart" onClick={handleChild} >
                 <button
                   onClick={() => addBasket(obj)}
                   className="btn btn-success titleBtn-addCart-btn"

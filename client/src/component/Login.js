@@ -13,11 +13,11 @@ export default function Login() {
         console.log(obj);
         let user = obj.data.user
         if (user != null) {
-            dispatch({ type: "login", payload: user })
+            dispatch({ type: "login", payload: obj.data })
+            dispatch({ type: "getCart", payload: obj.data.user.cart })
             history.push("/")
         } else {
-
-            alert(obj.data.message)
+            alert(obj.data.errors)
         }
         setEmail("")
         setPassword("")

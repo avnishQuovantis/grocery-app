@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useLocation, useParams } from "react-router";
+import { useLocation, useParams, useHistory } from "react-router";
 import "./css/user.scss";
 import Modal from "./Modal";
 export default function User() {
   const data = useLocation();
+  const history = useHistory()
   console.log(data.user);
   const user = data.user;
   const [modal, setModal] = useState(false)
@@ -12,6 +13,9 @@ export default function User() {
   }
   const hideModal = () => {
     setModal(false)
+  }
+  if (user == undefined) {
+    history.push("/")
   }
   return (
     <div className="mainContainer">

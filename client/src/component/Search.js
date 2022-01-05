@@ -1,24 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./css/catagory.scss"
 import { useSelector, useDispatch } from 'react-redux'
 import Item from './Item'
 import { useParams } from 'react-router'
 import Rows from './Rows'
+import axios from 'axios'
 
 export default function Search() {
-  let state = useSelector(state => state.home)
+  let items = useSelector(state => state.home.data)
+  const dispatch = useDispatch()
   let { search } = useParams()
-  // let search=state.search.toLowerCase()
-  console.log(search);
-  const items = state.data.filter(obj => {
-    // return obj["title"].toLowerCase().includes(state.search.toLowerCase())
-    return obj["title"].toLowerCase().includes(search.toLowerCase())
-  })
-  console.log(items);
+  useEffect(async () => {
+    let url = "http://localhost:9000/search/" + search
+    let val = await axios.post(url, { search })
+    let newVal = val.data.data.length > 0 ? val.data.data : []
+    console.log(newVal);
+    dispatch({ type: "initialHomeData", payload: newVal })
+  }, [search])
+
   return (
     <div className="mainContainer">
+      {console.log(items)}
 
-      {/* <Item items={items}/> */}
       <Rows data={items} />
     </div>
   )

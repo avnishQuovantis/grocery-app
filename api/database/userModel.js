@@ -1,5 +1,7 @@
 const mongoose = require("mongoose")
 const { db_link } = require("../secrets")
+const bcrypt = require("bcrypt")
+const { isEmail } = require("validator")
 mongoose.connect(db_link).then(db => {
     console.log("connected");
 }).catch(err => {
@@ -7,7 +9,7 @@ mongoose.connect(db_link).then(db => {
 })
 
 //schem
-let userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     firstName: {
         type: String
     },
@@ -20,15 +22,42 @@ let userSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
-        required: true
+        required: [true, "please enter email"],
+        validate: [isEmail, "email is incorrect"]
     },
     password: {
         type: String,
         required: [true, "please enter a password"],
-    }
+    },
+    token: {
+        type: String
+    },
+    cart: { type: Array }
 })
 
+//save password in hashed form
+userSchema.pre("save", async function (next) {
+    const salt = await bcrypt.genSalt()
+    this.password = await bcrypt.hash(this.password, salt)
+    next()
+})
 
+userSchema.statics.login = async function (email, password) {
+    console.log("inside login function");
+    const user = await this.findOne({ email: email })
+    console.log("inside userModel login function ", user);
+    if (user) {
+        const auth = await bcrypt.compare(password, user.password)
+        console.log(auth);
+        if (auth) {
+            return user
+        } else {
+            throw Error("incorrect password")
+        }
+    } else {
+        throw Error("incorrect email")
+    }
+}
 let userModel = mongoose.model("usermodel", userSchema)
 module.exports = userModel
 // async function createData() {

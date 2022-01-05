@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./css/catagory.scss";
 // import { useHistory } from 'react-router';
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useParams } from "react-router";
-
+import axios from "axios";
 // import { AddBasket } from './functions';
 import Item from "./Item";
 import Rows from "./Rows";
 export default function Catagory() {
   const param = useParams();
   const select = useSelector((state) => state.home);
-  let items = select.data.filter((obj) => {
-    console.log(obj.type == param.name);
-    return obj.type === param.name;
-  });
+  const dispatch = useDispatch()
+
+  useEffect(async () => {
+    let url = "http://localhost:9000/catagory/" + param.name
+    let val = await axios.get(url)
+    let data = val.data.data
+    dispatch({ type: "initialHomeData", payload: data })
+  }, [])
+  let items = [...select.data]
   const [btnState, setBtnState] = useState({
     priceUp: false,
     priceDown: false,
@@ -54,6 +59,7 @@ export default function Catagory() {
 
   return (
     <div className="mainContainer">
+      {console.log(items)}
       {/* <div className="leftCatagory">
         <div>
           <button

@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./css/checkout.scss";
 export default function Checkout() {
-  const select = useSelector((state) => state.home);
-  const data = select.cart;
+  const currUser = useSelector((state) => state.auth.currUser);
+  const data = useSelector(state => state.cart.cart);
   let totalPrice = 0;
   return (
     <div className="mainContainer">
@@ -36,7 +36,7 @@ export default function Checkout() {
         </div>
         <div className="checkoutAddress">
           <h4>address</h4>
-          <div>{select.currUser.address}</div>
+          <div>{currUser.address}</div>
         </div>
         <button className="btn btn-outline-danger confirmBtn">Confirm</button>
       </div>
