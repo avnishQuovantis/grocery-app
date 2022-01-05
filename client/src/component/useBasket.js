@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -8,7 +8,12 @@ export default function useBasket() {
     const auth = useSelector(state => state.auth.currUser)
     const cart = useSelector(state => state.cart.cart)
     const history = useHistory()
+    const [items, setItems] = useState(cart)
+    useEffect(() => {
+        console.log("inside useBasket => ", items);
+        dispatch({ type: "cartChange", payload: items })
 
+    }, [items])
     const addBasket = async (obj) => {
         if (auth) {
 
@@ -22,11 +27,8 @@ export default function useBasket() {
                 basketObj = increaseQuantity(cart, obj);
             }
             let newItem = await axios.post("http://localhost:9000/editCart", { id: auth._id, items: basketObj })
-            console.log(newItem);
-            dispatch({
-                type: "addInBasket",
-                payload: newItem.data.cart,
-            });
+            console.log("newItem addBasket", newItem);
+            setItems(newItem.data.cart)
         } else {
             alert("please login first")
             history.push("/login")
@@ -41,10 +43,7 @@ export default function useBasket() {
                 cartObj = decreaseQuantity(cart, obj);
             }
             let newItem = await axios.post("http://localhost:9000/editCart", { id: auth._id, items: cartObj })
-            dispatch({
-                type: "removeFromBasket",
-                payload: newItem.data.cart,
-            });
+            setItems(newItem.data.cart)
         }
         else {
             alert("please login first")
@@ -57,10 +56,7 @@ export default function useBasket() {
             let newObj = removeFromCart(cart, obj);
             let newItem = await axios.post("http://localhost:9000/editCart", { id: auth._id, items: newObj })
             console.log(newItem.data.cart);
-            dispatch({
-                type: "deleteItem",
-                payload: newItem.data.cart,
-            });
+            setItems(newItem.data.cart)
         } else {
             alert("please login first")
             history.push("/login")

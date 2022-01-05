@@ -2,22 +2,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-
+import useBasket from "./useBasket"
 export default function Item({ items }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const addBasket = (obj) => {
-    dispatch({
-      type: "addInBasket",
-      payload: obj,
-    });
-  };
-  const removeBasket = (obj) => {
-    dispatch({
-      type: "removeFromBasket",
-      payload: obj,
-    });
-  };
+  const [addBasket, removeBasket] = useBasket()
   return (
     <div className="catagoryContainer">
       {items.map((obj) => {

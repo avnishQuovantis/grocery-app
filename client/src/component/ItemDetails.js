@@ -12,11 +12,11 @@ export default function ItemDetails() {
   const dispatch = useDispatch();
   const param = useParams();
   const [data, setData] = useState({})
-  console.log(param);
   const [addBasket, removeBasket] = useBasket()
   useEffect(async () => {
     let urlName = "http://localhost:9000/item/" + param.name
     let val = await axios.get(urlName)
+    console.log(val);
     let newVal = val.data.item
     let newData = { ...newVal, filename: Grocery[newVal.filename] }
     setData(newData)
@@ -38,13 +38,6 @@ export default function ItemDetails() {
         </div>
 
         <div className="addRemoveItem">
-          <button
-            onClick={() => removeBasket(data)}
-            className="btn btn-danger "
-          >
-            -
-          </button>
-          {/* <h5>{data.qty}</h5> */}
           <button
             onClick={() => addBasket(data)}
             className="btn btn-primary  add"

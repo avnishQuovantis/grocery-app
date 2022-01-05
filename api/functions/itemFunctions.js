@@ -68,7 +68,9 @@ function homeItems(req, res) {
 async function cartItem(req, res) {
     const { id, items } = req.body
     try {
-        let cartItems = await userModel.findByIdAndUpdate(id, { cart: items })
+        await userModel.findByIdAndUpdate(id, { cart: items })
+        let cartItems = await userModel.findById(id)
+        console.log("cart items after updater ", cartItems.cart);
         res.status(200).json({ cart: cartItems.cart })
     } catch (err) {
         console.log(err.message);

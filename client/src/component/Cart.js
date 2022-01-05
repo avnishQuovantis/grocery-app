@@ -39,7 +39,7 @@ export default function Cart() {
           data.map((obj) => {
             return (
 
-              <div data-testid="rowsData" className="cart" onClick={() => history.push({ pathname: `/item/${obj.title}`, state: { data: obj } })}>
+              <div data-testid="rowsData" className="cart" onClick={() => history.push({ pathname: `/item/${obj.id}`, state: { data: obj } })}>
                 <div className="cart__titleBtn" onClick={handleChild}>
                   <img src={obj.filename} />
                   <div className="cart__titleBtn-addCart" >
@@ -68,9 +68,9 @@ export default function Cart() {
 
                 </div>
                 <h6 data-testid="rowtitle" className="cart__title">{obj.title}</h6>
-                {/* <div className="qtyPrice"> */}
+
                 <span className="cart__price">
-                  <span className="cart__price-mrp" >{parseFloat(obj.price + (obj.price / 8)).toFixed(2)}</span> {obj.price}
+                  <span className="cart__price-mrp" >{Math.floor(obj.price).toFixed(2)}</span> {Math.floor(obj.price)}
                 </span>
 
 

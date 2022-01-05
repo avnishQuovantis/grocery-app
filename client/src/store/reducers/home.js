@@ -1,8 +1,5 @@
-import { act } from "react-dom/test-utils";
-import Signup from "../component/Signup";
-import data from "../groceries/data";
-// import { } from "./descriptors"
-import Grocery from "../groceries/Grocery"
+import Grocery from "../../groceries/Grocery"
+import { GET_DATA } from "../descriptor/descriptors";
 let initialState = {
   data: [],
 
@@ -14,7 +11,7 @@ const home = (state = initialState, action) => {
 
   switch (action.type) {
 
-    case "initialHomeData":
+    case GET_DATA:
       console.log(action.payload);
       let arr = action.payload.map(obj => {
         let fn = Grocery[obj.filename]
